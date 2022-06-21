@@ -21,7 +21,7 @@ export default async(_source: unknown, args : SignUpArgsType ): Promise<SignUpTy
         const hashId = CryptoJS.AES.encrypt(id, encrypt_key).toString();
         console.log(hashId)
         const expireTime = new Date().getTime() + (15 * 60 * 1000);
-        const token   = hashId + " _ " + expireTime;
+        const token   = hashId + "_" + expireTime;
         const emailSend = await sendSignUpEmail(data.email,token)
         return {
             name : data.name,
@@ -48,7 +48,7 @@ export default async(_source: unknown, args : SignUpArgsType ): Promise<SignUpTy
                 const hashId = CryptoJS.AES.encrypt(id, encrypt_key).toString();
                 console.log(hashId)
                 const expireTime = new Date().getTime() + (15 * 60 * 1000);
-                const token = hashId + " _ " + expireTime;
+                const token = hashId + "_" + expireTime;
                 const emailSend = await sendSignUpEmail(user.email,token)
                 return {
                     name : user.name,
