@@ -19,9 +19,9 @@ export default async(_source: unknown, args : SignUpArgsType ): Promise<SignUpTy
     if(data && !data.isVerified && !data.isActivated){
         const id = data._id.toString();
         const hashId = CryptoJS.AES.encrypt(id, encrypt_key).toString();
+        console.log(hashId)
         const expireTime = new Date().getTime() + (15 * 60 * 1000);
         const token   = hashId + " _ " + expireTime;
-        console.log(token)
         const emailSend = await sendSignUpEmail(data.email,token)
         return {
             name : data.name,
@@ -46,9 +46,9 @@ export default async(_source: unknown, args : SignUpArgsType ): Promise<SignUpTy
                 const user = await newUser.save();
                 const id = user._id.toString();
                 const hashId = CryptoJS.AES.encrypt(id, encrypt_key).toString();
+                console.log(hashId)
                 const expireTime = new Date().getTime() + (15 * 60 * 1000);
                 const token = hashId + " _ " + expireTime;
-                console.log(token)
                 const emailSend = await sendSignUpEmail(user.email,token)
                 return {
                     name : user.name,

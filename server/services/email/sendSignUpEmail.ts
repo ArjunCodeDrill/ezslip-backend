@@ -5,8 +5,9 @@ import signUpTemplate  from './email_templates/signUpTemplate';
 const user_email : string = (process.env.user_email as string);
 const sendgrid_key : any = (process.env['SENDGRID_API_KEY'] as any);
 
-const sendSignUpEmail = async(email : string,token : string) => {
+const sendSignUpEmail = async(email : string,token : any) => {
     const url = `http://localhost:3000/signUpLoader/${token}`
+    console.log(url)
     const templateData =  signUpTemplate(url);
         //step 1
     const transporter = nodemailer.createTransport(
