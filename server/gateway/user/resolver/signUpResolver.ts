@@ -19,11 +19,11 @@ export default async(_source: unknown, args : SignUpArgsType ): Promise<SignUpTy
     if(data && !data.isVerified && !data.isActivated){
         const id = data._id.toString();
         const hashId = CryptoJS.AES.encrypt(id, encrypt_key).toString();
-        console.log(hashId)
         const expireTime = new Date().getTime() + (15 * 60 * 1000);
         const token   = hashId + "_" + expireTime;
         const emailSend = await sendSignUpEmail(data.email,token)
         return {
+            id : data._id,
             name : data.name,
             organizationName : data.organizationName,
             email : data.email,
@@ -36,6 +36,7 @@ export default async(_source: unknown, args : SignUpArgsType ): Promise<SignUpTy
             }
     }else if (data && data.isVerified && !data.isActivated){
         return { 
+            id : data._id,
             message : 'User already exits! Please redirect to set-password page'
         }
     }
@@ -46,11 +47,11 @@ export default async(_source: unknown, args : SignUpArgsType ): Promise<SignUpTy
                 const user = await newUser.save();
                 const id = user._id.toString();
                 const hashId = CryptoJS.AES.encrypt(id, encrypt_key).toString();
-                console.log(hashId)
                 const expireTime = new Date().getTime() + (15 * 60 * 1000);
                 const token = hashId + "_" + expireTime;
                 const emailSend = await sendSignUpEmail(user.email,token)
                 return {
+                    id : user._id,
                     name : user.name,
                     organizationName : user.organizationName,
                     email : user.email,

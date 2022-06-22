@@ -4,6 +4,7 @@ const SignUpType = new GraphQLObjectType({
     name: "SignUp",
     description: "New user sign in",
     fields: () => ({
+        id : { type: GraphQLID},
         name : { type: GraphQLString},
         organizationName : { type: GraphQLString},
         email : { type: GraphQLString},

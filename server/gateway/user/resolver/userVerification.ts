@@ -8,10 +8,8 @@ export default async(_source : unknown,args : {verificationId:string} ) : Promis
     const verification_id = args.verificationId;
     //Split the string into an array
     var splitString = verification_id.split('_');
-    
     const hashId = splitString[0];
     const expireTime =  splitString[1]
-    console.log(expireTime)
     const currentTime = new Date().getTime()
      
     // Decrypt

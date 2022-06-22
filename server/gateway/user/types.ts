@@ -10,6 +10,7 @@ export type SignUpArgsType = {
 };
 
 export type SignUpType = {
+  id?:  MongooseTypes.ObjectId,
   name? : string,
   organizationName?: string,
   email? : string,
