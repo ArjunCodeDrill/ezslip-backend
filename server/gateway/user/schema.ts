@@ -8,12 +8,14 @@ import UserVerificationType from '@user/types/UserVerificationType';
 import LoginInput from '@user/types/LoginInput';
 import SetPasswordInput from '@user/types/SetPasswordInput';
 import SignUpInput from '@user/types/SignUpInput';
+import ForgetPasswordType from '@user/types/ForgetPasswordType';
 
 import SignUp from '@user/resolver/signUpResolver';
 import SetPassword from '@user/resolver/setPasswordResolver';
 import GetUser from '@user/resolver/getUserResolver'
 import Login from '@user/resolver/loginResolver'
 import UserVerification from '@user/resolver/userVerification'
+import ForgetPassword from '@user/resolver/forgetPasswordResolver'
 
 export const userQuery = {
     getUser: {
@@ -64,5 +66,13 @@ export const userMutation = {
             },
         },
         resolve : Login
+    },
+    forgetPassword : {
+        type : ForgetPasswordType,
+        description : 'Forget Password',
+        args : {
+            email: { type: new GraphQLNonNull(GraphQLString)},
+        },
+        resolve : ForgetPassword
     }
 }
