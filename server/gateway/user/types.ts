@@ -59,9 +59,7 @@ export type UserVerificationType = {
 }
 
 export type ForgetPasswordType = {
-  id? : MongooseTypes.ObjectId,
-  email?: string,
-  message? : string
+  message : string
 }
 
   

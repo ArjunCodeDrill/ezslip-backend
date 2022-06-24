@@ -38,11 +38,11 @@ var storage = multer.diskStorage({
 export const postController = async(req : Request | any,res : Response) => {
   upload(req, res, async function (err) {
     if (err instanceof multer.MulterError) {
-      return res.status(400).send("File too large should be less than 4 MB");
+      return res.status(400).json("File too large should be less than 4 MB");
     }else if(err) {
       return res
           .status(400)
-          .send("Only .png, .jpg and .jpeg format filetype  allowed!");
+          .json("Only .png, .jpg and .jpeg format filetype  allowed!");
     }else{   
       const id = req.user._id;
       const user = await User.findById(id)
@@ -67,8 +67,8 @@ export const postController = async(req : Request | any,res : Response) => {
         await managment.save();
         return  res.status(201).json('Organization Details Added')
       }catch(error){
-        console.log(error);
-        return  res.status(400).json('Error occured')
+        // console.log(error);
+        return  res.status(400).json(`Error occured : ${error}`)
       }}    
     })
 }
@@ -76,11 +76,11 @@ export const postController = async(req : Request | any,res : Response) => {
 export const updateController = async(req : Request | any,res : Response) => {
   upload(req, res, async function (err) {
     if (err instanceof multer.MulterError) {
-      return res.status(400).send("File too large should be less than 4 MB");
+      return res.status(400).json("File too large should be less than 4 MB");
     }else if (err) {
       return res
           .status(400)
-          .send("Only .png, .jpg and .jpeg format filetype  allowed!");
+          .json("Only .png, .jpg and .jpeg format filetype  allowed!");
     }else{
       try{
         const id = req.user._id;
@@ -90,7 +90,7 @@ export const updateController = async(req : Request | any,res : Response) => {
           if(user.organizationImage != req.file.path){
             fs.unlink(user.organizationImage, (err) => {
               if (err) {
-                console.error(err)
+                // console.error(err)
                 return
               }      
             })
@@ -115,9 +115,37 @@ export const updateController = async(req : Request | any,res : Response) => {
         })
         return res.status(201).json('Organization Details Updated')
       }catch(error){
-        console.log(error);
-        return  res.status(400).json('Error occured')
+        // console.log(error);
+        return  res.status(400).json(`Error occured : ${error}`)
       }
     }
   })
+}
+
+export const getController = async(req : Request | any,res : Response) => {
+  const id = req.user._id;
+  const user = await User.findById(id);
+  const organization = await OrganizationDetails.findOne({user : id})
+  const user_Details = {
+    organizationImage : user.organizationImage,
+    organizationLegalName : user.organizationLegalName,
+    organizationType : user.organizationType,
+    address : user.address,
+  }
+  const organization_Details = {
+    basicSalary : organization.basicSalary,
+    HRA : organization.HRA,
+    CIN : organization.CIN,
+    EPF : organization.EPF,
+    ESI : organization.ESI,
+  }
+  try{
+    const details = {
+      user_Details,
+      organization_Details
+    }
+    return res.status(200).json(details)
+  }catch(error){
+    return  res.status(400).json(`Error occured : ${error}`)
+  }
 }

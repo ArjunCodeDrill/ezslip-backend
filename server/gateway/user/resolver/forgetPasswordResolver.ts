@@ -21,8 +21,6 @@ export default async(_source: unknown,args : { email : string}):Promise<ForgetPa
         const token   = hashId + "_" + expireTime;
         const emailSend = await forgetPasswordEmail(user.email,token)
         return {
-            id : user._id,
-            email : user.email,
             message : emailSend
         }
     }catch(error){

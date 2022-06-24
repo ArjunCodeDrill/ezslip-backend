@@ -11,7 +11,7 @@ const OrganizationDetailsSchema = new Schema({
         required : true
     },
     HRA :{
-        type : Number,
+        type : String,
         required : true
     },
     CIN :{
