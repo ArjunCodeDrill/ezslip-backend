@@ -67,7 +67,7 @@ export type HistoryType = {
     lastName : string, 
     employeeCode : string,
     slipShared? : Date | undefined,
-    updatedAt : Date
+    updatedAt : Date | undefined
 }
 
 export type History = {

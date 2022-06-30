@@ -32,11 +32,12 @@
     "paths": {
       "@server/*": ["./server/*"],
       "@database/*": ["./server/database/*"],
+      "@operations/*": ["./server/operations/*"],
       "@gateway/*": ["./server/gateway/*"],
       "@user/*": ["./server/gateway/user/*"],
       "@employee/*": ["./server/gateway/employee/*"],
       "@contact/*": ["./server/gateway/contact/*"],
-      "@rest-api/*" : ["./server/services/rest-api/*"],
+      "@organization/*": ["./server/gateway/organization/*"],
       "@middleware/*": ["./server/services/middleware/*"],
       "@email/*" : ["./server/services/email/*"],
       "@public/*" : ["./server/public/*"],

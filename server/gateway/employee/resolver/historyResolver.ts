@@ -21,21 +21,21 @@ const EmployeeHistory = async(_source:unknown,args : any,context : any):Promise<
                     return new Date(slipshared.date).getTime()
                  }).sort(); 
                  var slipshared = new Date(sorted_ms[sorted_ms.length-1]);
-                 var date; 
+                 var shared; 
                  if (Object.prototype.toString.call(slipshared) === "[object Date]")
                 {
                     if (isNaN(slipshared.getTime())) { 
-                        console.log('Invalid date')
+                        
                     }
                     else {
-                        date = slipshared;
+                        shared = slipshared;
                     }
                 }
                 const Employee  = {
                     firstName : employee.firstName,
                     lastName : employee.lastName,
                     employeeCode : employee.employeeCode,
-                    slipShared : date,
+                    slipShared : shared,
                     updatedAt : employee.updatedAt,
                 }
                 return Employee
