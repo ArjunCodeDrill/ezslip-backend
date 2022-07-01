@@ -37,7 +37,7 @@ const upload = multer({
 
 export const updateController = async (req: Request | any, res: Response) => {
   upload(req, res, async function (err) {
-
+    console.log(req.file)
     if (err instanceof multer.MulterError) {
       return res.status(400).json("File too large should be less than 4 MB");
     } else if (err) {
@@ -61,16 +61,9 @@ export const updateController = async (req: Request | any, res: Response) => {
             });
           }
         }
-        await User.findByIdAndUpdate(id, {
-          $set: {
-            organizationImage: `http://localhost:5000/image/${req.file.filename}`,
-            organizationLegalName: req.body.organizationLegalName,
-            organizationType: req.body.organizationType,
-            address: req.body.address,
-          },
-        });
-      
-        return res.status(201).json("Organization Details Updated");0
+        const imageUrl = `http://localhost:5000/image/${req.file.filename}`
+        console.log(imageUrl)
+        return res.status(201).json(imageUrl);
       } catch (error) {
         // console.log(error);
         return res.status(400).json(`Error occured : ${error}`);

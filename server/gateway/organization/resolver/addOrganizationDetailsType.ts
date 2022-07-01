@@ -1,7 +1,6 @@
 import Organization from "@database/model/organizationDetails";
 import User from "@database/model/user";
 import { AddOrganizationDetailsType,AddDetailsType } from "../types";
-import { updateController } from "@operations/controller"
 
 const AddOrganizationDetails = async(_source: unknown,args: AddOrganizationDetailsType,context : any):Promise<AddDetailsType> => {
     if(!context.user){
@@ -16,11 +15,10 @@ const AddOrganizationDetails = async(_source: unknown,args: AddOrganizationDetai
         const id = context.user.id
         const user = await User.findById(id);
         if (!user) return { message: "User does not exits!" };
-        // const imageUrl = await updateController()
 
         await User.findByIdAndUpdate(id, {  
             $set: {
-            //   organizationImage: imageUrl,
+              organizationImage: args.input.organizationImage,
               organizationLegalName: args.input.organizationLegalName,
               organizationType: args.input.organizationType,
               address: args.input.address,

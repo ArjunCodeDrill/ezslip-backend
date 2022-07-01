@@ -32,13 +32,13 @@
     "paths": {
       "@server/*": ["./server/*"],
       "@database/*": ["./server/database/*"],
-      "@operations/*": ["./server/operations/*"],
       "@gateway/*": ["./server/gateway/*"],
       "@user/*": ["./server/gateway/user/*"],
       "@employee/*": ["./server/gateway/employee/*"],
       "@contact/*": ["./server/gateway/contact/*"],
       "@organization/*": ["./server/gateway/organization/*"],
       "@middleware/*": ["./server/services/middleware/*"],
+      "@rest-api/*": ["./server/services/rest-api/*"],
       "@email/*" : ["./server/services/email/*"],
       "@public/*" : ["./server/public/*"],
     },                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
