@@ -50,6 +50,7 @@ export type EmployeeIdType = {
 }
 
 export type ListType = {
+    id :  MongooseTypes.ObjectId,
     firstName : string,
     lastName : string,
     employeeCode : string,
@@ -85,11 +86,16 @@ export type EmployeeNameListType = {
 }
 
 export type GetEmployeeType = {
-    employeeCode?: string,
-    designation?: string,
-    panNumber?: string,
-    dob?: Date,
-    salary?: string,
-    message?: string
+    firstName?: string,
+        lastName?: string,
+        employeeCode?: string,
+        designation?: string,
+        panNumber?: string,
+        salary?: string,
+        dob?: Date,
+        doj?: Date,
+        epf?: EPFType ,
+        esi?: ESIType,
+        message?: string
 }
 

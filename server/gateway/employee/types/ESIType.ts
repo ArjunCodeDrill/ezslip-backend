@@ -1,8 +1,8 @@
-import { GraphQLInputObjectType,GraphQLString,GraphQLBoolean} from 'graphql';
+import { GraphQLObjectType,GraphQLString,GraphQLBoolean} from 'graphql';
 
-const ESIType = new GraphQLInputObjectType({
-    name : 'ESI_Details',
-    description : 'Employee ESI_Detalils',
+const ESIType = new GraphQLObjectType({
+    name : 'Esi_Info',
+    description : 'Employee Esi_info',
     fields: () => ({
         isEnabled : { type: GraphQLBoolean},
         number : { type: GraphQLString}

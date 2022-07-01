@@ -1,7 +1,7 @@
 import { GraphQLInputObjectType,GraphQLNonNull,GraphQLString,GraphQLID } from 'graphql';
 import { GraphQLDate } from 'graphql-scalars';
-import EPFType from './EPFType';
-import ESIType from './ESIType';
+import EPFType from './AddEpfInputType';
+import ESIType from './AddEsiInputType';
 
 const UpdateEmployeeInput = new GraphQLInputObjectType({
    name: 'UpdateEmployeeInput',

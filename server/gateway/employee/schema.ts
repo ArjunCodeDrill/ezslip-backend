@@ -1,4 +1,4 @@
-import { GraphQLNonNull,GraphQLID,GraphQLString } from 'graphql';
+import { GraphQLNonNull,GraphQLID} from 'graphql';
 
 import AddType from './types/AddEmployeeType';
 import UpdateType from './types/UpdateType';
@@ -40,7 +40,7 @@ export const employeeQuery = {
         type : EmployeeType,
         description : 'Get employee with specific id',
         args : {
-            name: { type: new GraphQLNonNull(GraphQLString)},
+            id: { type: new GraphQLNonNull(GraphQLID)},
         },
         resolve : GetEmployee,
     }

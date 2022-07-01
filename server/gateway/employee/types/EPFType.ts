@@ -1,12 +1,12 @@
-import { GraphQLInputObjectType,GraphQLString,GraphQLBoolean} from 'graphql';
+import { GraphQLObjectType,GraphQLString,GraphQLBoolean} from 'graphql';
 
-const EPFType = new GraphQLInputObjectType({
-    name : 'EPF_Details',
-    description : 'Employee EPF_Detalils',
+const ESIType = new GraphQLObjectType({
+    name : 'Epf',
+    description : 'Employee Epf_Detalils',
     fields: () => ({
         isEnabled : { type: GraphQLBoolean},
         number : { type: GraphQLString}
     })
 })
 
-export default EPFType
+export default ESIType
