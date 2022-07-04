@@ -1,4 +1,4 @@
-import { GraphQLNonNull,GraphQLID} from 'graphql';
+import { GraphQLNonNull,GraphQLID,GraphQLString} from 'graphql';
 
 import AddType from './types/AddEmployeeType';
 import UpdateType from './types/UpdateType';
@@ -10,6 +10,7 @@ import AddEmployeeInput from './types/AddEmployeeInput';
 import UpdateEmployeeInput from './types/UpdateEmployeeInput'
 import EmployeeType from './types/EmployeeType';
 import EmployeeNameType from './types/EmployeeNameType'
+import GetEmployeeType from './types/GetEmployeeType'
 
 import AddEmployee from './resolver/addResolver';
 import UpdateEmployee from './resolver/updateResolver';
@@ -19,6 +20,8 @@ import EmployeeHistory from './resolver/historyResolver';
 import SlipShared from './resolver/slipShared';
 import GetEmployee from './resolver/getEmployeeResolver'
 import EmployeeNameList from './resolver/employeeNameListResolver'
+import Employee from "./resolver/getEmployeeByEmpCodeResolver"
+import GetEmployeeByName from "./resolver/getEmployeeByNameResolver"
 
 export const employeeQuery = {
     employeeList : {
@@ -36,13 +39,29 @@ export const employeeQuery = {
         description : 'List of employees names',
         resolve : EmployeeNameList
     },
-    getEmployee : {
+    getEmployeeById : {
         type : EmployeeType,
         description : 'Get employee with specific id',
         args : {
             id: { type: new GraphQLNonNull(GraphQLID)},
         },
         resolve : GetEmployee,
+    },
+    getEmployeeByEmpCode : {
+        type : GetEmployeeType,
+        description : 'Get employee with specific employeeCode',
+        args : {
+            employeeCode: { type: new GraphQLNonNull(GraphQLString)},
+        },
+        resolve : Employee,
+    },
+    getEmployeeByName : {
+        type : GetEmployeeType,
+        description : 'Get employee with specific employee name',
+        args : {
+            name: { type: new GraphQLNonNull(GraphQLString)},
+        },
+        resolve : GetEmployeeByName,
     }
 }
 

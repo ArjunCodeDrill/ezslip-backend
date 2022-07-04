@@ -37,7 +37,7 @@ const upload = multer({
 
 export const updateController = async (req: Request | any, res: Response) => {
   upload(req, res, async function (err) {
-    console.log(req.file)
+    // console.log(req.file)
     if (err instanceof multer.MulterError) {
       return res.status(400).json("File too large should be less than 4 MB");
     } else if (err) {
@@ -55,14 +55,12 @@ export const updateController = async (req: Request | any, res: Response) => {
           if (imageName != req.file.filename) {
             fs.unlink('./server/public/uploads/'+ imageName, (err) => {
               if (err) {
-                console.error(err)
                 return;
               }
             });
           }
         }
         const imageUrl = `http://localhost:5000/image/${req.file.filename}`
-        console.log(imageUrl)
         return res.status(201).json(imageUrl);
       } catch (error) {
         // console.log(error);

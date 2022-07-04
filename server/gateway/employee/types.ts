@@ -25,10 +25,6 @@ export type AddEmployeeArgsType = {
     }
 }
 
-export type EmployeeType = {
-    message: string
-}
-
 export type UpdateEmployeeArgsType = {
     input :{
         id : MongooseTypes.ObjectId,
@@ -87,15 +83,26 @@ export type EmployeeNameListType = {
 
 export type GetEmployeeType = {
     firstName?: string,
-        lastName?: string,
-        employeeCode?: string,
-        designation?: string,
-        panNumber?: string,
-        salary?: string,
-        dob?: Date,
-        doj?: Date,
-        epf?: EPFType ,
-        esi?: ESIType,
-        message?: string
+    lastName?: string,
+    employeeCode?: string,
+    designation?: string,
+    panNumber?: string,
+    salary?: string,
+    dob?: Date,
+    doj?: Date,
+    epf?: EPFType ,
+    esi?: ESIType,
+    message?: string
+}
+
+export type EmployeeType = {
+    firstName?: string,
+    lastName?: string,
+    employeeCode?: string,
+    designation?: string,
+    panNumber?: string,
+    salary?: string,
+    doj?: Date,
+    message?: string
 }
 
