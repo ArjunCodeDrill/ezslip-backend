@@ -103,6 +103,11 @@ export type EmployeeType = {
     panNumber?: string,
     salary?: string,
     doj?: Date,
-    message?: string
+    message?: string,
+    basicSalary?: string,
+    HRA?: string,
+    CIN?: string,
+    EPF?: string,
+    ESI?: string,
 }
 

@@ -13,9 +13,12 @@ const AddOrganizationDetails = async(_source: unknown,args: AddOrganizationDetai
         }
     }else{
         const id = context.user.id
-        const user = await User.findById(id);
+        const user = await User.findById(id)
+;
+        const organization = await Organization.findOne({user : id})
         if (!user) return { message: "User does not exits!" };
-
+        console.log(user)
+        console.log(organization)
         await User.findByIdAndUpdate(id, {  
             $set: {
               organizationImage: args.input.organizationImage,
@@ -24,18 +27,32 @@ const AddOrganizationDetails = async(_source: unknown,args: AddOrganizationDetai
               address: args.input.address,
             },
           });
-          await Organization.findOneAndUpdate(
-            { user: id },
-            {
-              $set: {
-                basicSalary: args.input.basicSalary,
-                HRA: args.input.HRA,
-                CIN: args.input.CIN,
-                EPF: args.input.EPF,
-                ESI: args.input.ESI,
-              },
-            }
-          );
+          if(organization){
+            await Organization.findOneAndUpdate(
+              { user: id },
+              {
+                $set: {
+                  basicSalary: args.input.basicSalary,
+                  HRA: args.input.HRA,
+                  CIN: args.input.CIN,
+                  EPF: args.input.EPF,
+                  ESI: args.input.ESI,
+                },
+              }
+            );
+          }else{
+            const organizationDetails = new Organization({
+              user : id,
+              basicSalary: args.input.basicSalary,
+              HRA: args.input.HRA,
+              CIN: args.input.CIN,
+              EPF: args.input.EPF,
+              ESI: args.input.ESI,
+          });
+          console.log(organizationDetails)
+          await organizationDetails.save();
+          }
+          
           return{
             message : 'User organization Details Updated'
           }
