@@ -37,6 +37,9 @@ export const employeeQuery = {
     employeeNameList : {
         type : EmployeeNameType,
         description : 'List of employees names',
+        args : {
+            name: { type: GraphQLString },
+        },
         resolve : EmployeeNameList
     },
     getEmployeeById : {

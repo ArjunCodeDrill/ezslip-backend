@@ -73,6 +73,7 @@ export type History = {
 }
 
 export type EmployeeNames = {
+    id :  MongooseTypes.ObjectId,
     name : string
 }
 

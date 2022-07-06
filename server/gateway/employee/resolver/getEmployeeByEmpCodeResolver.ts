@@ -19,7 +19,7 @@ const GetEmployee = async (
     try {
       const id = context.user.id
       const empCode = args.employeeCode;
-      const employeeInfo = await Employee.findOne({employeeCode : empCode,employeeStatus : true});
+      const employeeInfo = await Employee.findOne({employeeCode : empCode,userId : id,employeeStatus : true});
       const organizationInfo = await Organization.findOne({userId: id})
       var epf : string = '';
       var esi : string = '';

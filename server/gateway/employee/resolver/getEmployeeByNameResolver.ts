@@ -17,12 +17,12 @@ const GetEmployee = async (
     };
   } else {
     try {
-      const id = context.user.id
+      const id = context.user.id;
       const empName = args.name;
-      const name = empName.split(" ");
+      var name = empName.split(" ");
       const firstName = name[0];
       const lastName = name[1]
-      const employeeInfo = await Employee.findOne({firstName:firstName,lastName:lastName,employeeStatus:true});
+      const employeeInfo = await Employee.findOne({firstName:firstName,lastName:lastName,userId : id,employeeStatus: true});
       const organizationInfo = await Organization.findOne({userId: id})
       var epf : string = '';
       var esi : string = '';
